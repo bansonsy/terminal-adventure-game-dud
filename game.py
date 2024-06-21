@@ -73,7 +73,3 @@ def show_help():
         - status - show current player status
         - quit - end the game
     """)
-
-
-def bass():
-    pass
