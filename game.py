@@ -3,7 +3,7 @@ from colorama import Fore
 
 # Welcome prints out the welcome text
 def welcome():
-    print(Fore.RED + "                                                   D U N G E O N")
+    print(Fore.RED + "                                                    D U N G E O N")
     print(Fore.GREEN + """
     The village of Honeywood has been terrorized by strange, deadly creatures for months now. Unable to endure any 
     longer, the villagers pooled their wealth and hired the most skilled adventurer they could find: you. After
