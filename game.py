@@ -1,6 +1,10 @@
+from colorama import Fore
+
+
+# Welcome prints out the welcome text
 def welcome():
-    print("                                                     DUNGEON")
-    print("""
+    print(Fore.RED + "                                                   D U N G E O N")
+    print(Fore.GREEN + """
     The village of Honeywood has been terrorized by strange, deadly creatures for months now. Unable to endure any 
     longer, the villagers pooled their wealth and hired the most skilled adventurer they could find: you. After
     listening to their tale of woe, you agree to enter the labyrinth where most of the creatures seem to originate,
@@ -19,7 +23,7 @@ def play_game():
 
 def explore_labyrinth():
     while True:
-        player_input = input("-> ").lower().strip()
+        player_input = input(Fore.YELLOW + "-> ").lower().strip()
 
         # Do something with that input
         if player_input == "help":
@@ -35,15 +39,15 @@ def explore_labyrinth():
 
 
 def play_again():
-    yn = get_yn("Do you want to play again?")
+    yn = get_yn(Fore.YELLOW + "Do you want to play again?")
     if yn == "yes":
         play_game()
     else:
-        print("Thanks for playing!")
+        print("See you next time, Adventurer!!!")
         exit(0)
 
 
-def get_yn(question):
+def get_yn(question: str) -> str:  # -> str is called type hinting
     while True:
         answer = input(question + " (yes/no) -> ").lower().strip()
         if answer not in ["yes", "no", "y", "n"]:
@@ -57,7 +61,7 @@ def get_yn(question):
 
 
 def show_help():
-    print("""
+    print(Fore.GREEN + """
     Enter a command:
         - n/s/e/w: move in a direction
         - map - show a map of the labyrinth
