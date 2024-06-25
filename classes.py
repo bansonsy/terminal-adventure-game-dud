@@ -15,8 +15,8 @@ class Room:
 
     def print_description(self):
         print(self.description)
-        print(self.smell)
         print(self.sound)
+        print(self.smell)
 
 
 class Game:
