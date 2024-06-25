@@ -22,7 +22,7 @@ class Room:
 class Game:
     def __init__(self, player: Player):
         self.player = player
-        self.Room = None
+        self.room = None
         self.num_monsters: int = 0
         self.rooms: dict = {}
         self.x: int = 0
