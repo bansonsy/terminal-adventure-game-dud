@@ -24,10 +24,6 @@ def play_game():
 
     current_game = Game(adventurer)
 
-    room = Room()
-
-    current_game.room = room
-
     welcome()
     # Get player input
     input("Press ENTER to continue")
@@ -36,6 +32,9 @@ def play_game():
 
 def explore_labyrinth(current_game: Game):
     while True:
+        room = Room()
+        current_game.room = room
+
         current_game.room.print_description()
 
         player_input = input(Fore.YELLOW + "-> ").lower().strip()
@@ -43,7 +42,11 @@ def explore_labyrinth(current_game: Game):
         # Do something with that input
         if player_input == "help":
             show_help()
+        elif player_input in ["n", "s", "e", "w"]:
+            print(f"{Fore.GREEN}You move deeper into the dungeon.")
+            continue
 
+        # Quit the game
         elif player_input == "quit":
             print("Overcome with terror, you flee the dungeon, and are forever branded a coward.")
             # TODO: print out final score
