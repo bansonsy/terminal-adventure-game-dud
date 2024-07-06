@@ -1,3 +1,6 @@
+import random
+
+import armory
 from classes import Player, Room, Game
 
 from colorama import Fore, init
@@ -30,9 +33,22 @@ def play_game():
     explore_labyrinth(current_game)
 
 
+# Generate a room
+def generate_room() -> Room:
+    room = Room()
+
+    # There is a 25% chance that this room has an item
+    if random.randint(1, 100) < 26:
+        i = random.choice(armory.items.values())
+    return room
+
+
+# Explore labyrinth is the main game loop, which takes user input and then performs specific actions based
+# on that input
 def explore_labyrinth(current_game: Game):
     while True:
-        room = Room()
+        room = generate_room()
+
         current_game.room = room
 
         current_game.room.print_description()
@@ -42,6 +58,7 @@ def explore_labyrinth(current_game: Game):
         # Do something with that input
         if player_input == "help":
             show_help()
+
         elif player_input in ["n", "s", "e", "w"]:
             print(f"{Fore.GREEN}You move deeper into the dungeon.")
             continue
