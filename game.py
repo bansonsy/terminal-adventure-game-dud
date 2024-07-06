@@ -1,6 +1,7 @@
 import random
 
 import armory
+import bestiary
 from classes import Player, Room, Game
 
 from colorama import Fore, init
@@ -35,12 +36,19 @@ def play_game():
 
 # Generate a room
 def generate_room() -> Room:
-    room = Room()
+    items = []
+    monster = {}
 
     # There is a 25% chance that this room has an item
     if random.randint(1, 100) < 26:
-        i = random.choice(armory.items.values())
-    return room
+        i = random.choice(list(armory.items.values()))
+        items.append(i)
+
+    # There is a 25% chance that this room has a monster
+    if random.randint(1, 100) < 26:
+        monster = random.choice(bestiary.monsters)
+
+    return Room(items, monster)
 
 
 # Explore labyrinth is the main game loop, which takes user input and then performs specific actions based
@@ -52,6 +60,12 @@ def explore_labyrinth(current_game: Game):
         current_game.room = room
 
         current_game.room.print_description()
+
+        for i in current_game.room.items:
+            print(f"{Fore.YELLOW}You see a {i['name']}")
+
+        if current_game.room.monster:
+            print(f"{Fore.RED}There is a {current_game.room.monster['name']} here!")
 
         player_input = input(Fore.YELLOW + "-> ").lower().strip()
 
